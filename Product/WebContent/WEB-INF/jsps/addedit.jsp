@@ -165,30 +165,24 @@ div {
 						value="Laptop">Laptop</option>
 					<option value="Mobile">Mobile</option>
 					<option value="Tablet">Tablet</option></select> 
-					<br></br><input type="submit"
-					value="Add Product">
+					<br></br><input type="submit"	value="Add Product">
 			</form>
 			<%
 				} else {
 			%>
 			<h3 style= "color:white;">Edit Product</h3>
-			<form action="<%=request.getContextPath()%>/edit-product-op"
-				method="get">
-				<input type="number" name="id" value="<%=product.getId()%>">
-				<br />
-				<br /> <label>Name: </label> <input type="text" name="ename"
-					value="<%product.getName();%>"> <br />
-				<br /> <label>Price: </label> <input type="number" name="eprice"
-					value="<%product.getPrice();%>"> <br />
-				<br /> <label>Description: </label> <input type="text"
-					name="describ" value="<%product.getDescrib();%>"> <br />
+			<form action="<%=request.getContextPath()%>/edit-product-op"	method="get">
+				<input type="hidden" name="id" value="<%=product.getId()%>">
+				
+				<br /> <label>Name: </label> <input type="text" name="ename" value="<%out.print(product.getName());%>"> <br />
+			
+				<br /> <label>Price: </label> <input type="number" name="eprice" value="<%out.print(product.getPrice());%>"> <br />
+				<br /> <label>Description: </label> <input type="text"	name="describ" value="<%out.print(product.getDescrib());%>"> <br />
 				<br /> <label>Category: </label> <select name="category"><option
 						value="Laptop">Laptop</option>
 					<option value="Mobile">Mobile</option>
 					<option value="Tablet">Tablet</option></select> 
-					<br></br><input
-			
-					value="Edit Employee">
+					<br></br><input type="submit"	value="Edit Product">
 			</form>
 			<%
 				}
