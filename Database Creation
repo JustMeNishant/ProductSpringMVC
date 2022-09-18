@@ -1,0 +1,9 @@
+create database assignment1_80625;
+use assignment1_80625;
+create table products(id int primary key auto_increment,name varchar(255), price double, describ varchar(255) , category varchar(255));
+describe products;
+insert into products(name,price,describ,category)values('Oppo A5s',10000, '64GB Rom, 8GB Ram, 5.5"','Mobile');
+insert into products(name,price,describ,category)values('Vivo V15',18000, '128GB Rom, 6GB Ram, 6.2"','Mobile');
+insert into products(name,price,describ,category)values('Apple Iphone X',78000, '128GB Rom, 8GB, RAM 6.0','Mobile');
+insert into products(name,price,describ,category)values('Apple Macbook',118000, '256GB Rom ,16GB RAM, M2-Chip','Laptop');
+insert into products(name,price,describ,category)values(' Lenevo Ideapad Gaming 3',67000, '512GB ROM, 16GB Ram , Intel I3-11th Gen','Laptop');
