@@ -11,9 +11,10 @@
 <br></br>
 <style type="text/css">
 body {
-	background: linear-gradient(to right, #33ccff 0%, #ff66cc 100%);
+	background: linear-gradient(to top right, #333300 0%, #cc0000 100%);
 	margin: 0 auto;
 	width: fit-content;
+	color:white;
 }
 
 div {
@@ -26,7 +27,7 @@ div {
 }
 
 .pro_block_mobile {
-		display: inlibe-block;
+	display: inlibe-block;
 	border: 3px solid white;
 	padding: 15px;
 	height: fit-content;
@@ -34,10 +35,9 @@ div {
 	padding-bottom: 2%;
 	float: left;
 	margin: 10px;
-	background: linear-gradient(to left,  #00ffff 0%, #cc99ff 100%);
+	background: linear-gradient(to bottom left, #333300 0%, #cc0000 100%);
 	font-family: Georgia, serif;
 	font-size: 1vw;
-	
 }
 
 .pro_block_laptop {
@@ -49,14 +49,50 @@ div {
 	padding-bottom: 2%;
 	float: left;
 	margin: 10px;
-	background: linear-gradient(to left,  #00ffff 0%, #cc99ff 100%);
+	background: linear-gradient(to bottom left, #333300 0%, #cc0000 100%);
 	font-family: Georgia, serif;
 	font-size: 1vw;
-	
+}
+
+.addbutton {
+	background color: black;
+	color: white; padding 5px 5px;
+	text-align: center;
+	font-size: 13px;
+	margin: 4px 2px;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 7px;
+	p
+}
+
+.button1 {style="background-color: #ff0066;
+	background color: red;
+	color: white; padding 5px 5px;
+	text-align: center;
+	font-size: 0.75vw;
+	margin: 4px 2px;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 7px;
+	width: fit-content;
+	height: fit-content;
+}
+.button2 {
+	background color: red;
+	color: red; padding 5px 5px;
+	text-align: center;
+	font-size: .75vw;
+	margin: 4px 2px;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 7px;
+	width: fit-content;
+	height: fit-content;
 }
 
 .pro_block_tablet {
-		display: inlibe-block;
+	display: inlibe-block;
 	border: 3px solid white;
 	padding: 15px;
 	height: fit-content;
@@ -64,11 +100,9 @@ div {
 	padding-bottom: 2%;
 	float: left;
 	margin: 10px;
-	background: linear-gradient(to left,  #00ffff 0%, #cc99ff 100%);
+	background: linear-gradient(to bottom left, #333300 0%, #cc0000 100%);
 	font-family: Georgia, serif;
 	font-size: 1vw;
-	
-	
 }
 </style>
 
@@ -80,7 +114,7 @@ div {
 		Home&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
 
 	<h1>
-		<a href="addedit"> Add Product </a> <br> </br>
+		<a href="addedit" style="color:white;">Add Product </a> <br> </br>
 
 		<%
 			List<Product> list = (List<Product>) request.getAttribute("list");
@@ -109,22 +143,29 @@ div {
 
 		<h8 style="float:left">Mobiles</h8>
 		<br></br>
-		<%Boolean ans1=mobile.isEmpty(); %>
-<% if(ans1==true){ %>
-<div class="pro_block_tablet">
-<h3> No Tablet In Stock</h3>
-</div>
-<%} %>
+		<%
+			Boolean ans1 = mobile.isEmpty();
+		%>
+		<%
+			if (ans1 == true) {
+		%>
+		<div class="pro_block_tablet">
+			<h3>No Mobile In Stock</h3>
+		</div>
+		<%
+			}
+		%>
 		<%
 			for (Product e : mobile) {
 		%>
 
 		<div class="pro_block_mobile">
 			<h3><%=e.getName()%></h3><%=e.getDescrib()%>&nbsp;<br></br>INR
-			<%=e.getPrice()%>&nbsp; <a
+			<%=e.getPrice()%>&nbsp; <br></br> <a
 				href="<%=request.getContextPath()%>/delete-product?id=<%=e.getId()%>"
-				onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
-			|&nbsp;<a href="addedit">Edit </a>
+				onclick='return confirm("Are you sure you want to delete?")'><button class="button1" style="background-color: #ff0006;">
+					<b>Delete</b>
+				</button></a> <a href="addedit"><button class="button2" style="background-color: white;"><b>Edit</b></button> </a>
 
 		</div>
 		&nbsp;&nbsp;
@@ -133,18 +174,23 @@ div {
 		%>
 
 
-		<br></br>
-		 <br></br>
-		 <br></br>
+		<br></br> <br></br> <br></br>
 
 		<h8 style="float:left">Laptops</h8>
-		 <br></br>
-		 <%Boolean ans2=laptop.isEmpty(); %>
-<% if(ans2==true){ %>
-<div class="pro_block_tablet">
-<h3> No Tablet In Stock</h3>
-</div>
-<%} %>
+		<br></br>
+		<br></br>
+		<%
+			Boolean ans2 = laptop.isEmpty();
+		%>
+		<%
+			if (ans2 == true) {
+		%>
+		<div class="pro_block_tablet">
+			<h3>No Laptop In Stock</h3>
+		</div>
+		<%
+			}
+		%>
 		<%
 			for (Product e : laptop) {
 		%>
@@ -152,48 +198,54 @@ div {
 		<div class="pro_block_laptop">
 
 			<h3><%=e.getName()%></h3><%=e.getDescrib()%>&nbsp;<br></br>INR
-			<%=e.getPrice()%>&nbsp;<br></br> <a
+			<%=e.getPrice()%>&nbsp; <br></br> <a
 				href="<%=request.getContextPath()%>/delete-product?id=<%=e.getId()%>"
-				onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
-			|&nbsp;<a href="addedit">Edit </a>
+				onclick='return confirm("Are you sure you want to delete?")'><button class="button1" style="background-color: #ff0006;">
+					<b>Delete</b>
+				</button></a> <a href="addedit"><button class="button2" style="background-color: white;"><b>Edit</b></button> </a>
+
 
 		</div>
 		<%
 			}
 		%>
 		</section>
-		<br></br> <br></br><br></br> <br></br> 
+		<br></br> <br></br>
+		<br></br> <br></br> <br></br>
 		<section>
 			<h8 style="float:left">Tablets</h8>
 			<br></br>
-<%Boolean ans=tablet.isEmpty(); %>
-<% if(ans==true){ %>
-<div class="pro_block_tablet">
-<h3> No Tablet In Stock</h3>
-</div>
-<%} %>
+			<%
+				Boolean ans = tablet.isEmpty();
+			%>
+			<%
+				if (ans == true) {
+			%>
+			<div class="pro_block_tablet">
+				<h3>No Tablet In Stock</h3>
+			</div>
+			<%
+				}
+			%>
 
-			<% 
+			<%
 				for (Product e : tablet) {
 			%>
 
 			<div class="pro_block_tablet">
-
-
-				<h3><%=e.getName()%></h3><%=e.getDescrib()%>&nbsp;<br></br>INR
-				<%=e.getPrice()%>&nbsp;<br></br> <a
-					href="<%=request.getContextPath()%>/delete-product?id=<%=e.getId()%>"
-					onclick='return confirm("Are you sure you want to delete?")'>Delete</a>
-				|&nbsp;<a href="addedit">Edit </a>
+<h3><%=e.getName()%></h3><%=e.getDescrib()%>&nbsp;<br></br>INR
+			<%=e.getPrice()%>&nbsp; <br></br> <a
+				href="<%=request.getContextPath()%>/delete-product?id=<%=e.getId()%>"
+				onclick='return confirm("Are you sure you want to delete?")'><button class="button1" style="background-color: #ff0006;">
+					<b>Delete</b>
+				</button></a> <a href="addedit"><button class="button2" style="background-color: white;"><b>Edit</b></button> </a>
 
 			</div>
 			<%
-				
-			}
+				}
 			%>
-			<br></br> <br></br> <br></br>
-			<br></br> 
-			<h6 style="float:left"> Nishant</h6>
+			<br></br> <br></br> <br></br> <br></br>
+			<h6 style="float: left">Nishant</h6>
 		</section>
 </body>
 </html>
